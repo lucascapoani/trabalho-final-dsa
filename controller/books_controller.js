@@ -2,53 +2,72 @@ const booksRegister = require('../business/books_register')
 const booksRepository = require('../persistency/books_persistency')
 
 async function listedBooks(req, res) {
-    const booksList = await booksRepository.listedBooks();
-    res.json(booksList);
-}
-
-function searchById(req,res) {
-    const id = req.params.id;
-    try{
-        const book = booksRegister.searchById(id);
-        res.json(book);
+    try {
+        const booksList = await booksRepository.listedBooks();
+        res.json(booksList);
     } catch (err) {
-        res.status(err.number).json(err);
+        res.status(500).json(err);
     }
 }
 
-function insertNewBook(req, res) {
+async function searchById(req,res) {
+    const id = req.params.id;
+    try{
+        const book = await booksRegister.searchById(id);
+        res.json(book);
+    } catch (err) {
+        if (err.status) {
+            res.status(err.status).json(err)
+        } else {
+            res.status(500).json({message: "Erro não identificado."})
+        }
+    }
+}
+
+async function insertNewBook(req, res) {
     const book = req.body;
 
     try{
-        const insertedBook = booksRegister.insertNewBook(book);
+        const insertedBook = await booksRegister.insertNewBook(book);
         res.status(201).json(insertedBook);
     }
     catch (err) {
-        res.status(err.number).json(err);
+        if (err.status) {
+            res.status(err.status).json(err)
+        } else {
+            res.status(500).json({message: "Erro não identificado."})
+        }
     }
 }
 
-function updateBook(req,res) {
+async function updateBook(req,res) {
     const id = req.params.id;
     const book = req.body;
     try{
-        const bookAtualizado = booksRegister.updateBook(id,xbook);
+        const bookAtualizado = await booksRegister.updateBook(id,xbook);
         res.json(bookAtualizado);
     }
     catch (err) {
-        res.status(err.number).json(err);
+        if (err.status) {
+            res.status(err.status).json(err)
+        } else {
+            res.status(500).json({message: "Erro nao identificado"})
+        }
     }
-
 }
 
-function deleteBook(req,res) {
+async function deleteBook(req,res) {
     const id = req.params.id;
     try{
-        const deletedBook = booksRegister.deleteBook(id);
+        const deletedBook = await booksRegister.deleteBook(id);
         res.json(deletedBook);
     }
     catch (err) {
-        res.status(err.number).json(err);
+        if(err.status) {
+            res.status(err.status).json(err)
+        } else {
+            res.status(500).json({message: "Erro nao identificado"})
+        }
     }
 }
 

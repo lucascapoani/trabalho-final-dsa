@@ -20,14 +20,12 @@ async function insertNewBook(book) {
         try {
             const insertedBook = await booksPersistency.insertNewBook(book);
             return insertedBook
-        } catch(err) { 
-            throw err 
-        }
+        } catch(err) { throw err; }
     } else {
-        const error = new Error()
-        error.message = "ERRO: Parâmetros inválidos!"
-        error.status = 400
-        throw error
+        const error = new Error();
+        error.message = "ERRO: Parâmetros inválidos!";
+        error.status = 400;
+        throw error;
     }
 }
 
@@ -42,9 +40,7 @@ async function searchById(id) {
             throw error
         }
         return book
-    } catch(err) {
-        throw err
-    }
+    } catch(err) { throw err; }
 }
 
 // Atualizando dados de algum book na lista de books

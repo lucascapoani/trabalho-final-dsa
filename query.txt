@@ -1,0 +1,9 @@
+create database library;
+
+create table books (
+    id integer primary key,
+    name varchar,
+    isbn integer,
+    author varchar,
+    year integer
+)
