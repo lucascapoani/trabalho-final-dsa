@@ -16,7 +16,7 @@ async function listedBooks() {
 
 // Adicionando um book novo na lista de books (CREATE)
 async function insertNewBook(book) {
-    if (book && book.id && book.nome && book.isbn && book.autor && book.ano) {
+    if (book && book.id && book.name && book.isbn && book.author && book.year) {
         try {
             const insertedBook = await booksPersistency.insertNewBook(book);
             return insertedBook
@@ -45,7 +45,7 @@ async function searchById(id) {
 
 // Atualizando dados de algum book na lista de books
 async function updateBook(id, alterInfo) {
-    if(alterInfo && alterInfo.id && alterInfo.nome && alterInfo.isbn && alterInfo.autor && alterInfo.ano) {
+    if(alterInfo && alterInfo.id && alterInfo.name && alterInfo.isbn && alterInfo.author && alterInfo.year) {
         try {
             const updatedBook = await booksPersistency.updateBook(id, alterInfo)
             if(!updatedBook) {

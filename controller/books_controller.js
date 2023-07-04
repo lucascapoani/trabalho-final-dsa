@@ -44,7 +44,7 @@ async function updateBook(req,res) {
     const id = req.params.id;
     const book = req.body;
     try{
-        const bookAtualizado = await booksRegister.updateBook(id,xbook);
+        const bookAtualizado = await booksRegister.updateBook(id,book);
         res.json(bookAtualizado);
     }
     catch (err) {

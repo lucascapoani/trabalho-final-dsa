@@ -1,4 +1,4 @@
-create database library;
+create database books_crud;
 
 create table books (
     id integer primary key,
@@ -7,3 +7,27 @@ create table books (
     author varchar,
     year integer
 )
+
+{
+  "id":1,
+  "name":"Catcher in the Rye",
+  "isbn":27893,
+  "author":"Didi Mocó",
+  "year":1998
+}
+
+{
+  "id":2,
+  "name":"Harry Potter",
+  "isbn":6758,
+  "author":"JK Rowling",
+  "year":1988
+}
+
+{
+  "id":3,
+  "name":"Sr dos Aneis",
+  "isbn":234678,
+  "author":"Xuxa Meneghel",
+  "year":1977
+}
