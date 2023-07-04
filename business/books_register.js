@@ -76,7 +76,7 @@ async function deleteBook(id) {
             error.status = 404
             throw error
         }
-        return livro
+        return book
     } 
     catch(err) { throw err }
 }
